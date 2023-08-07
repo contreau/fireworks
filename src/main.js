@@ -6,6 +6,7 @@
 
 const root = document.querySelector(":root");
 const fireworkColors = ["var(--red)", "var(--blue)", "var(--white)"];
+const startButton = document.querySelector(".start-button");
 
 // firework sparks
 const fw1 = Array.from(document.querySelectorAll(".fw-1"));
@@ -63,6 +64,18 @@ function fireworkPositionsAndColors() {
 }
 
 fireworkPositionsAndColors();
+
+// starts firework display on click
+// TODO: move button to bottom and transform into modal to adjust color (non-mobile only?)
+startButton.addEventListener("click", () => {
+  startButton.style.opacity = 0;
+  setTimeout(() => {
+    fireworkSparks.map((fw) => {
+      fw.map((f) => f.classList.add("firework-animation"));
+    });
+    launchers.map((l) => l.classList.add("launch-animation"));
+  }, 350);
+});
 // setInterval(() => {
 //   fireworkPositionsAndColors();
 //   console.log("changing color");
