@@ -27,7 +27,7 @@ body {
   font-family: system-ui;
   position: relative;
   background-color: #0f0f0f;
-  background-image: url("../svg/page-bg.svg");
+  background-image: url("../svg/page-bg--1500x900.svg");
   color: #fff;
   min-height: 100vh;
   display: grid;
@@ -54,7 +54,7 @@ body {
 }
 
 .start-button:hover {
-  background-color: #0f0f0f75;
+  background-color: #3405e0;
 }
 
 .button-text {
