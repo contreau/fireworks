@@ -7,6 +7,7 @@
   --fw1-offset: 0px;
   --fw2-offset: 0px;
   --fw3-offset: 0px;
+  --explosion-radius: 300px;
 }
 
 *,
@@ -26,34 +27,79 @@ body {
   font-family: system-ui;
   position: relative;
   background-color: #0f0f0f;
+  background-image: url("../svg/page-bg.svg");
   color: #fff;
   min-height: 100vh;
   display: grid;
 }
 
-.user-start {
+/* LAUNCH BUTTON */
+.start-button {
   position: absolute;
+  min-width: 174px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.start-button {
   font: inherit;
   font-size: clamp(1rem, 4vw, 1.3rem);
   color: #fff;
-  background-color: #0f0f0f;
-  border: solid 1px #fff;
+  background-color: #0f0f0f12;
+  border: solid 1px #ffffff5c;
   border-radius: 30px;
-  padding: 0.5em 1em;
-  transition: 0.4s all;
+  padding: 0.4em 0.7em;
+  transition: 0.4s all ease;
   cursor: pointer;
+  max-width: 300px;
+  text-align: center;
 }
 
 .start-button:hover {
-  background-color: #212121;
+  background-color: #0f0f0f75;
 }
 
+.button-text {
+  transition: opacity 0.4s ease;
+}
+
+.fa-caret-down {
+  transition: transform 0.2s ease;
+}
+
+/* added by javascript  { */
+.fadeIn {
+  animation: fadeIn 0.4s 0.2s ease forwards;
+}
+
+.rotateCaret {
+  transform: rotate(180deg);
+}
+
+.shift-down-animation {
+  animation: resizeButton 0.4s 0.2s ease forwards,
+    shiftButton 0.4s 0.6s ease forwards;
+}
+/* } */
+
+/* UI MODAL */
+.ui-modal {
+  position: absolute;
+  border: solid 1px #ffffff5c;
+  border-radius: 10px;
+  padding: 0.8em 1em;
+  max-width: 650px;
+  width: 100%;
+  text-align: center;
+  bottom: -30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: bottom 0.4s ease;
+}
+
+.modal-reveal {
+  bottom: 10%;
+}
+
+/* FIREWORKS AND LAUNCHERS */
 .firework-all,
 .launcher-container {
   display: grid;
@@ -70,7 +116,6 @@ body {
   width: 9px;
   min-height: 9px;
   background-color: transparent;
-  /* animation: launch 2.6s ease-out infinite; */
 }
 
 .launch-animation {
@@ -159,8 +204,6 @@ body {
   background-color: var(--firework-color);
   filter: drop-shadow(0 0 0.4em var(--firework-shadow));
   transition: background-color 0.4s ease;
-  /* ~ 0.5s delay, 1s active */
-  /* animation: explode 2.6s ease-in forwards infinite; */
 }
 
 .firework-animation {
@@ -174,6 +217,8 @@ body {
 .fw-3 {
   animation-delay: 0.5s;
 }
+
+/* ANIMATIONS */
 
 @keyframes launch {
   0% {
@@ -213,64 +258,82 @@ body {
   }
 }
 
+@keyframes shiftButton {
+  100% {
+    top: 95%;
+  }
+}
+
+@keyframes resizeButton {
+  100% {
+    min-width: 0px;
+  }
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+
 .firework-spark:nth-of-type(1) {
-  --x-direction: calc(200px * cos(0deg));
-  --y-direction: calc(-200px * sin(0deg));
+  --x-direction: calc(var(--explosion-radius) * cos(0deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(0deg));
 }
 
 .firework-spark:nth-of-type(2) {
-  --x-direction: calc(200px * cos(30deg));
-  --y-direction: calc(-200px * sin(30deg));
+  --x-direction: calc(var(--explosion-radius) * cos(30deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(30deg));
 }
 
 .firework-spark:nth-of-type(3) {
-  --x-direction: calc(200px * cos(60deg));
-  --y-direction: calc(-200px * sin(60deg));
+  --x-direction: calc(var(--explosion-radius) * cos(60deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(60deg));
 }
 
 .firework-spark:nth-of-type(4) {
-  --x-direction: calc(200px * cos(90deg));
-  --y-direction: calc(-200px * sin(90deg));
+  --x-direction: calc(var(--explosion-radius) * cos(90deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(90deg));
 }
 
 .firework-spark:nth-of-type(5) {
-  --x-direction: calc(200px * cos(-120deg));
-  --y-direction: calc(-200px * sin(120deg));
+  --x-direction: calc(var(--explosion-radius) * cos(-120deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(120deg));
 }
 
 .firework-spark:nth-of-type(6) {
-  --x-direction: calc(200px * cos(-150deg));
-  --y-direction: calc(-200px * sin(150deg));
+  --x-direction: calc(var(--explosion-radius) * cos(-150deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(150deg));
 }
 
 .firework-spark:nth-of-type(7) {
-  --x-direction: calc(200px * cos(-180deg));
-  --y-direction: calc(-200px * sin(180deg));
+  --x-direction: calc(var(--explosion-radius) * cos(-180deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(180deg));
 }
 
 .firework-spark:nth-of-type(8) {
-  --x-direction: calc(200px * cos(-210deg));
-  --y-direction: calc(-200px * sin(210deg));
+  --x-direction: calc(var(--explosion-radius) * cos(-210deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(210deg));
 }
 
 .firework-spark:nth-of-type(9) {
-  --x-direction: calc(200px * cos(-240deg));
-  --y-direction: calc(-200px * sin(240deg));
+  --x-direction: calc(var(--explosion-radius) * cos(-240deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(240deg));
 }
 
 .firework-spark:nth-of-type(10) {
-  --x-direction: calc(200px * cos(270deg));
-  --y-direction: calc(-200px * sin(270deg));
+  --x-direction: calc(var(--explosion-radius) * cos(270deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(270deg));
 }
 
 .firework-spark:nth-of-type(11) {
-  --x-direction: calc(200px * cos(300deg));
-  --y-direction: calc(-200px * sin(300deg));
+  --x-direction: calc(var(--explosion-radius) * cos(300deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(300deg));
 }
 
 .firework-spark:nth-of-type(12) {
-  --x-direction: calc(200px * cos(330deg));
-  --y-direction: calc(-200px * sin(330deg));
+  --x-direction: calc(var(--explosion-radius) * cos(330deg));
+  --y-direction: calc(-1 * var(--explosion-radius) * sin(330deg));
 }
 
 @media (max-width: 800px) {

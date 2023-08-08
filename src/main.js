@@ -7,6 +7,8 @@
 const root = document.querySelector(":root");
 const fireworkColors = ["var(--red)", "var(--blue)", "var(--white)"];
 const startButton = document.querySelector(".start-button");
+const buttonText = document.querySelector(".button-text");
+const uiModal = document.querySelector(".ui-modal");
 
 // firework sparks
 const fw1 = Array.from(document.querySelectorAll(".fw-1"));
@@ -63,20 +65,41 @@ function fireworkPositionsAndColors() {
   }
 }
 
-fireworkPositionsAndColors();
+function startInterval() {
+  setInterval(() => {
+    console.log("swapping colors");
+    fireworkPositionsAndColors();
+  }, 2600);
+}
 
 // starts firework display on click
-// TODO: move button to bottom and transform into modal to adjust color (non-mobile only?)
+let initialClick = false;
 startButton.addEventListener("click", () => {
-  startButton.style.opacity = 0;
-  setTimeout(() => {
-    fireworkSparks.map((fw) => {
-      fw.map((f) => f.classList.add("firework-animation"));
-    });
-    launchers.map((l) => l.classList.add("launch-animation"));
-  }, 350);
+  if (!initialClick) {
+    initialClick = true;
+    // initiates interval to randomize colors
+    startInterval();
+    // transitions button content + positioning
+    buttonText.style.opacity = 0;
+    startButton.classList.add("shift-down-animation");
+    buttonText.classList.add("fadeIn");
+    setTimeout(() => {
+      buttonText.innerHTML = "<i class='fa-solid fa-caret-down'></i>";
+    }, 200);
+    // initiates firework animations
+    setTimeout(() => {
+      fireworkSparks.map((fw) => {
+        fw.map((f) => f.classList.add("firework-animation"));
+      });
+      launchers.map((l) => l.classList.add("launch-animation"));
+    }, 800);
+  } else {
+    // moves modal in and out
+    const caret = document.querySelector(".fa-caret-down");
+    caret.classList.toggle("rotateCaret");
+    uiModal.classList.toggle("modal-reveal");
+  }
 });
-// setInterval(() => {
-//   fireworkPositionsAndColors();
-//   console.log("changing color");
-// }, 3400);
+
+fireworkPositionsAndColors();
+// this laptop browser viewport is 787px high, for reference
