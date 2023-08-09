@@ -7,7 +7,7 @@
   --fw1-offset: 0px;
   --fw2-offset: 0px;
   --fw3-offset: 0px;
-  --explosion-radius: 300px;
+  --explosion-radius: 250px;
 }
 
 *,
@@ -20,14 +20,14 @@ body,
 html {
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 body {
   font-family: system-ui;
   position: relative;
   background-color: #0f0f0f;
-  background-image: url("../svg/page-bg--1500x900.svg");
+  background-image: url("../svg/page-bg--1800x900.svg");
   color: #fff;
   min-height: 100vh;
   display: grid;
@@ -35,6 +35,7 @@ body {
 
 /* LAUNCH BUTTON */
 .start-button {
+  opacity: 0;
   position: absolute;
   min-width: 174px;
   top: 50%;
@@ -82,21 +83,53 @@ body {
 
 /* UI MODAL */
 .ui-modal {
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
   position: absolute;
   border: solid 1px #ffffff5c;
   border-radius: 10px;
+  background-color: #00122049;
   padding: 0.8em 1em;
-  max-width: 650px;
+  max-width: 700px;
   width: 100%;
   text-align: center;
-  bottom: -30%;
+  bottom: -40%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: bottom 0.4s ease;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row + .row {
+  margin-top: 1.8rem;
+  justify-content: center;
+  gap: 5rem;
+}
+
+a {
+  color: #fff;
+}
+
+.fa-github {
+  font-size: 2.5rem;
+  border-radius: 50%;
+  transition: color 0.4s;
+}
+
+.fa-github:hover,
+.fa-github:focus {
+  color: #ffffff89;
+  outline-color: transparent;
+}
+
 .modal-reveal {
-  bottom: 10%;
+  bottom: 0.5rem;
 }
 
 /* FIREWORKS AND LAUNCHERS */
@@ -374,5 +407,11 @@ body {
 
   .launcher:nth-of-type(3) {
     align-self: end;
+  }
+}
+
+@media (min-width: 1800px) {
+  body {
+    background-image: url("../svg/page-bg--2560x1380.svg");
   }
 }

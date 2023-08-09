@@ -64,11 +64,62 @@
       <div class="launcher lchr-2"></div>
       <div class="launcher lchr-3"></div>
     </section>
-    <button class="start-button">
+    <button class="start-button" tabindex="1">
       <span class="button-text">Light 'em up 🚀</span>
     </button>
     <section class="ui-modal">
-      <p>Display Settings</p>
+      <div class="row">
+        <div class="slide-container">
+          <p>Explosion Radius: <span class="slider-value"></span>px</p>
+          <input
+            type="range"
+            min="50"
+            max="1000"
+            value="250"
+            class="slider"
+            tabindex="2"
+          />
+        </div>
+        <div class="colorpick-container">
+          <p>Firework 1 Color</p>
+          <input
+            type="color"
+            class="color-picker"
+            id="0"
+            value="#ff3030"
+            tabindex="3"
+          />
+        </div>
+        <div class="colorpick-container">
+          <p>Firework 2 Color</p>
+          <input
+            type="color"
+            class="color-picker"
+            id="1"
+            value="#ffffff"
+            tabindex="4"
+          />
+        </div>
+        <div class="colorpick-container">
+          <p>Firework 3 Color</p>
+          <input
+            type="color"
+            class="color-picker"
+            id="2"
+            value="#005eff"
+            tabindex="5"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="randomizer-container">
+          <label for="randomize">Randomize Color Order</label>
+          <input type="checkbox" id="randomize" tabindex="6" value="false" />
+        </div>
+        <a href="https://github.com/zenDev-2/fireworks" target="#"
+          ><i class="fa-brands fa-github" tabindex="7"></i
+        ></a>
+      </div>
     </section>
   </body>
 </html>
